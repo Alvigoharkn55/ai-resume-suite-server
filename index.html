@@ -8,6 +8,15 @@
 <body>
   <h1>Welcome to AI Resume Suite!</h1>
   <p>Build stunning, professional resumes in minutes.</p>
+  
+  <form id="resumeForm">
+    <label>Name: <input type="text" id="name"></label><br>
+    <label>Job Title: <input type="text" id="job"></label><br>
+    <label>Skills: <input type="text" id="skills"></label><br>
+    <button type="button" onclick="generateResume()">Generate Resume</button>
+  </form>
+  <div id="resumeOutput" style="white-space: pre-wrap; margin-top:20px;"></div>
+
   <script src="script.js"></script>
 </body>
 </html>
