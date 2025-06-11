@@ -6,17 +6,36 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Welcome to AI Resume Suite!</h1>
-  <p>Build stunning, professional resumes in minutes.</p>
-  
-  <form id="resumeForm">
-    <label>Name: <input type="text" id="name"></label><br>
-    <label>Job Title: <input type="text" id="job"></label><br>
-    <label>Skills: <input type="text" id="skills"></label><br>
-    <button type="button" onclick="generateResume()">Generate Resume</button>
-  </form>
-  <div id="resumeOutput" style="white-space: pre-wrap; margin-top:20px;"></div>
-
+  <div class="container">
+    <h1>AI Resume Suite</h1>
+    <p class="subtitle">Build stunning, professional resumes in minutes using AI.</p>
+    <form id="resumeForm">
+      <label>Name:<input type="text" id="name" required></label>
+      <label>Job Title:<input type="text" id="job" required></label>
+      <label>Skills:<input type="text" id="skills" required></label>
+      <button type="button" id="generateBtn">Generate Resume</button>
+    </form>
+    <div id="loading" style="display:none">Generating resume, please wait...</div>
+    <div id="resumeOutput"></div>
+    <!-- Example AdSense block (replace with your real AdSense code when ready) -->
+    <!--
+    <div style="margin-top:30px;">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <ins class="adsbygoogle"
+          style="display:block"
+          data-ad-client="ca-pub-XXXXXXXXXXXXXX"
+          data-ad-slot="1234567890"
+          data-ad-format="auto"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+    -->
+    <footer>
+      <p>Want extra templates or PDF download? <a href="#">Upgrade to Premium</a></p>
+      <p>© 2025 AI Resume Suite</p>
+    </footer>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
