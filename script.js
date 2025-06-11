@@ -1,26 +1,36 @@
-async function generateResume() {
-  const name = document.getElementById("name").value;
-  const job = document.getElementById("job").value;
-  const skills = document.getElementById("skills").value;
+document.getElementById('generateBtn').addEventListener('click', async function() {
+  const name = document.getElementById("name").value.trim();
+  const job = document.getElementById("job").value.trim();
+  const skills = document.getElementById("skills").value.trim();
+  const output = document.getElementById("resumeOutput");
+  const loading = document.getElementById("loading");
+  output.textContent = "";
+  loading.style.display = 'block';
 
-  const prompt = `Create a professional resume for ${name} applying for ${job} with these skills: ${skills}. Use a clean, modern format.`;
+  // Replace this URL with your backend endpoint that calls OpenAI API
+  // For now, this will show a message since browsers can't call OpenAI directly.
+  // See the instructions below for how to set up a simple backend.
+  const backendUrl = "https://YOUR_BACKEND_ENDPOINT_HERE"; // <-- Change this!
 
-  // IMPORTANT: Replace "YOUR_OPENAI_API_KEY" with your actual OpenAI API key!
-  const apiKey = "YOUR_OPENAI_API_KEY";
+  try {
+    const response = await fetch(backendUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ name, job, skills })
+    });
 
-  const response = await fetch("https://api.openai.com/v1/completions", {
-    method: "POST",
-    headers: {
-      "Authorization": `Bearer ${apiKey}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      model: "text-davinci-003",
-      prompt: prompt,
-      max_tokens: 400
-    })
-  });
+    loading.style.display = 'none';
 
-  const data = await response.json();
-  document.getElementById("resumeOutput").innerText = data.choices?.[0]?.text?.trim() || "Sorry, something went wrong. Please try again.";
-}
+    if (response.ok) {
+      const data = await response.json();
+      output.textContent = data.resume || data.result || data.text || "Resume generated but response format unknown.";
+    } else {
+      output.textContent = "Something went wrong. Please try again later.";
+    }
+  } catch (err) {
+    loading.style.display = 'none';
+    output.textContent = "Network or server error. Please try again later.";
+  }
+});
